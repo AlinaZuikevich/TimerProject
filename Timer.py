@@ -53,6 +53,7 @@ s_text = canvas.create_text(400, 145, text='s', fill="Black", font="Arial 20")
 
 
 def clear_date():
+    """Clear time data selection field"""
     hour.set("0")
     minute.set("0")
     second.set("0")
@@ -76,6 +77,7 @@ Timer_id = ''
 
 
 def start_click():
+    """Show and hide required widgets after selecting time and pressing 'Start' button"""
     forg = [h_combo, m_combo, s_combo, start, clear]
     for i in forg:
         i.destroy()
@@ -85,6 +87,7 @@ def start_click():
         canvas.itemconfig(q, state='hidden')
 
     def cancel_timer():
+        """Cancel the timer, exit the application"""
         window.after_cancel(Timer_id)
         messagebox.showinfo('Time Countdown', 'Timer is off')
         window.quit()
@@ -100,6 +103,7 @@ def start_click():
                              fill="Black", font="Arial 50")
 
     def countdown():
+        """Time is reversed"""
         global Timer_id
         nonlocal h, m, s
 
@@ -125,6 +129,7 @@ def start_click():
     countdown()
 
     def stop_click():
+        """Stop time"""
         global Timer_id
         if Timer_id:
             window.after_cancel(Timer_id)
@@ -132,6 +137,7 @@ def start_click():
         play.config(state=NORMAL)
 
     def play_click():
+        """Continue countdown"""
         stop.config(state=NORMAL)
         play.config(state=DISABLED)
         countdown()
